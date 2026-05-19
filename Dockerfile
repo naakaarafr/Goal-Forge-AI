@@ -22,4 +22,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run database migrations / initialization and start FastAPI
-CMD ["sh", "-c", "python init_db.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
+CMD ["sh", "-c", "python init_db.py && python app/db/seed.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT"]

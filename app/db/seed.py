@@ -1,4 +1,5 @@
 import asyncio
+import uuid
 from sqlalchemy import select
 from app.db.session import AsyncSessionLocal
 from app.models.user import User
@@ -10,11 +11,16 @@ async def seed_data():
     async with AsyncSessionLocal() as session:
         # 1. Create Departments
         depts = ["Engineering", "Sales", "HR", "Marketing"]
+        dept_map = {}
         for dept_name in depts:
             query = select(Department).where(Department.name == dept_name)
             res = await session.execute(query)
-            if not res.scalar_one_or_none():
-                session.add(Department(name=dept_name))
+            dept = res.scalar_one_or_none()
+            if not dept:
+                dept = Department(name=dept_name)
+                session.add(dept)
+                await session.flush() # generate ID
+            dept_map[dept_name] = dept
         
         await session.commit()
         
@@ -22,20 +28,59 @@ async def seed_data():
         admin_email = "admin@goalforge.ai"
         query = select(User).where(User.email == admin_email)
         res = await session.execute(query)
-        if not res.scalar_one_or_none():
+        admin = res.scalar_one_or_none()
+        if not admin:
             admin = User(
                 email=admin_email,
-                hashed_password=get_password_hash("admin123"),
+                hashed_password=get_password_hash("Password123!"),
                 full_name="Super Admin",
                 role=UserRole.admin,
-                is_active=True
+                is_active=True,
+                is_superuser=True
             )
             session.add(admin)
             print(f"Admin user created: {admin_email}")
         
+        # 3. Create Manager
+        manager_email = "manager@goalforge.ai"
+        query = select(User).where(User.email == manager_email)
+        res = await session.execute(query)
+        manager = res.scalar_one_or_none()
+        if not manager:
+            manager = User(
+                email=manager_email,
+                hashed_password=get_password_hash("Password123!"),
+                full_name="John Manager",
+                role=UserRole.manager,
+                is_active=True,
+                department_id=dept_map["Engineering"].id
+            )
+            session.add(manager)
+            await session.flush()
+            print(f"Manager user created: {manager_email}")
+            
+        # 4. Create Employee
+        employee_email = "employee@goalforge.ai"
+        query = select(User).where(User.email == employee_email)
+        res = await session.execute(query)
+        employee = res.scalar_one_or_none()
+        if not employee:
+            manager_id = manager.id if manager else None
+            employee = User(
+                email=employee_email,
+                hashed_password=get_password_hash("Password123!"),
+                full_name="Sarah Employee",
+                role=UserRole.employee,
+                is_active=True,
+                manager_id=manager_id,
+                department_id=dept_map["Engineering"].id
+            )
+            session.add(employee)
+            print(f"Employee user created: {employee_email}")
+            
         await session.commit()
         
-        # 3. Create Default Quarter Window Configurations
+        # 5. Create Default Quarter Window Configurations
         from app.models.quarter_window_config import QuarterWindowConfig, QuarterWindowPhase
         
         configs = [
