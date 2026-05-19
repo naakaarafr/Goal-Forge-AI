@@ -5,8 +5,15 @@ import { useAppStore } from '@/store';
 import { useTeamMembers } from '@/hooks/api/useManager';
 import { useManagerStats, useCompletionSummary, useQoQTrends } from '@/hooks/api/useAnalytics';
 import { usePendingApprovals } from '@/hooks/api/useWorkflow';
-import { UoMTrendChart } from '@/components/analytics/UoMTrendChart';
-import { QuarterlyComparisonChart } from '@/components/analytics/QuarterlyComparisonChart';
+import dynamic from 'next/dynamic';
+const UoMTrendChart = dynamic(
+  () => import('@/components/analytics/UoMTrendChart').then(mod => mod.UoMTrendChart),
+  { ssr: false }
+);
+const QuarterlyComparisonChart = dynamic(
+  () => import('@/components/analytics/QuarterlyComparisonChart').then(mod => mod.QuarterlyComparisonChart),
+  { ssr: false }
+);
 import {
   Users, TrendingUp, AlertTriangle, CheckCircle2, Clock,
   Compass, BarChart3, User, ArrowUpRight, Zap, ShieldCheck,

@@ -13,7 +13,11 @@ import {
 } from 'lucide-react';
 import { ProgressBar } from '@/components/ui/progress/ProgressBar';
 import { RadialProgress } from '@/components/ui/progress/RadialProgress';
-import { QuarterlyComparisonChart } from '@/components/analytics/QuarterlyComparisonChart';
+import dynamic from 'next/dynamic';
+const QuarterlyComparisonChart = dynamic(
+  () => import('@/components/analytics/QuarterlyComparisonChart').then(mod => mod.QuarterlyComparisonChart),
+  { ssr: false }
+);
 import { useQuarters } from '@/hooks/api/useQuarters';
 import { QuarterTimeline } from '@/components/ui/progress/QuarterTimeline';
 

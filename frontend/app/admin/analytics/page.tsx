@@ -4,8 +4,15 @@ import React from 'react';
 import { useAppStore } from '@/store';
 import { useUsersAdmin } from '@/hooks/api/useAdmin';
 import { useDashboardSummary, useCompletionSummary, useQoQTrends } from '@/hooks/api/useAnalytics';
-import { QuarterlyComparisonChart } from '@/components/analytics/QuarterlyComparisonChart';
-import { UoMTrendChart } from '@/components/analytics/UoMTrendChart';
+import dynamic from 'next/dynamic';
+const QuarterlyComparisonChart = dynamic(
+  () => import('@/components/analytics/QuarterlyComparisonChart').then(mod => mod.QuarterlyComparisonChart),
+  { ssr: false }
+);
+const UoMTrendChart = dynamic(
+  () => import('@/components/analytics/UoMTrendChart').then(mod => mod.UoMTrendChart),
+  { ssr: false }
+);
 import { RadialProgress } from '@/components/ui/progress/RadialProgress';
 import {
   BarChart3, Users, TrendingUp, Target, CheckCircle2,

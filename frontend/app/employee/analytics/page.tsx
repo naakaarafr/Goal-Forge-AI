@@ -4,7 +4,11 @@ import React from 'react';
 import { useCurrentUser } from '@/hooks/api/useAuthQueries';
 import { useGoals } from '@/hooks/api/useGoals';
 import { useAppStore } from '@/store';
-import { UoMTrendChart } from '@/components/analytics/UoMTrendChart';
+import dynamic from 'next/dynamic';
+const UoMTrendChart = dynamic(
+  () => import('@/components/analytics/UoMTrendChart').then(mod => mod.UoMTrendChart),
+  { ssr: false }
+);
 import { 
   BarChart3, Target, TrendingUp, Sparkles, 
   Activity, ArrowUpRight, Award, Compass, ShieldCheck, Flame

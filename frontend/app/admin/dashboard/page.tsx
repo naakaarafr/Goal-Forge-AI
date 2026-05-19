@@ -6,8 +6,13 @@ import { useCurrentUser } from '@/hooks/api/useAuthQueries';
 import { useAppStore } from '@/store';
 import { useQuartersAdmin, useUsersAdmin, useEscalations } from '@/hooks/api/useAdmin';
 import { useDashboardSummary, useCompletionSummary, useQoQTrends } from '@/hooks/api/useAnalytics';
-import { QuarterlyComparisonChart } from '@/components/analytics/QuarterlyComparisonChart';
+import dynamic from 'next/dynamic';
 import { RadialProgress } from '@/components/ui/progress/RadialProgress';
+
+const QuarterlyComparisonChart = dynamic(
+  () => import('@/components/analytics/QuarterlyComparisonChart').then(mod => mod.QuarterlyComparisonChart),
+  { ssr: false }
+);
 import {
   Shield, Users, AlertOctagon, Unlock, Building2, Calendar,
   Terminal, BarChart3, ChevronRight, ArrowRight, TrendingUp,
