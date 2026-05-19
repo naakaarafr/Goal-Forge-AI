@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GoalForge AI - Enterprise Performance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#001453",
+                        "on-secondary-fixed-variant": "#173bab",
+                        "primary-container": "#2563eb",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#dae2fd",
+                        "on-primary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "secondary-fixed": "#dde1ff",
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#eef0ff",
+                        "background": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e7ff",
+                        "inverse-primary": "#b4c5ff",
+                        "secondary": "#3755c3",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-container": "#708cfd",
+                        "tertiary-container": "#bc4800",
+                        "surface-container-low": "#f2f3ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-dim": "#d2d9f4",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-container": "#00217a",
+                        "surface-container-highest": "#dae2fd",
+                        "on-tertiary-fixed": "#360f00",
+                        "secondary-fixed-dim": "#b8c4ff",
+                        "surface-container": "#eaedff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-tint": "#0053db",
+                        "surface": "#faf8ff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "outline": "#737686",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004ac6",
+                        "on-surface": "#131b2e",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary": "#943700"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container_max_width": "1440px",
+                        "unit_xs": "4px",
+                        "unit_xl": "32px",
+                        "topbar_height": "64px",
+                        "sidebar_width": "280px",
+                        "margin_mobile": "16px",
+                        "margin_desktop": "32px",
+                        "unit_md": "16px",
+                        "unit_lg": "24px",
+                        "unit_sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .ai-border {
+            background: linear-gradient(to right, #004ac6, #943700) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- Navbar for Landing Page (Suppressed Shared Navs due to Linear flow intent) -->
+<nav class="fixed top-0 w-full z-50 glass-panel h-topbar_height px-gutter flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary font-bold text-[28px]" style="font-variation-settings: 'FILL' 1;">track_changes</span>
+<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">GoalForge AI</span>
+</div>
+<div class="hidden md:flex items-center gap-8 font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Platform</a>
+<a class="hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="hover:text-primary transition-colors" href="#">Resources</a>
+<a class="hover:text-primary transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="font-label-md text-label-md text-primary hover:text-primary-container hidden md:block" href="#">Log In</a>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg shadow-sm hover:bg-primary-container transition-colors">Get Started</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[100px] md:pt-[140px] px-margin_mobile md:px-margin_desktop max-w-container_max_width mx-auto w-full">
+<!-- Hero Section -->
+<section class="text-center max-w-4xl mx-auto mb-unit_xl md:mb-[120px]">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant text-primary font-label-sm text-label-sm mb-6">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span>GoalForge AI 2.0 is now live</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-6 leading-tight">
+                Transform Goal Tracking Into <br class="hidden md:block"/> Intelligent Performance Execution.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                Move beyond static OKRs. GoalForge AI actively monitors, predicts risks, and generates actionable insights to ensure your enterprise hits its targets with absolute precision.
+            </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4">
+<button class="w-full md:w-auto bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg shadow-sm hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+                    Start Free Trial <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full md:w-auto bg-surface text-primary font-label-md text-label-md px-6 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors">
+                    View Demo
+                </button>
+</div>
+</section>
+<!-- Dashboard Preview Hero Image -->
+<section class="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-outline-variant mb-[120px]">
+<img alt="Dashboard Preview" class="w-full h-full object-cover" data-alt="A high-end, minimalist enterprise software dashboard displayed on a large screen, viewed straight on. The interface is light mode, featuring sleek data visualizations, blue and slate progress bars, and subtle glowing 'AI insights' panels. The aesthetic is clean, analytical, and professional, perfectly matching a modern corporate SaaS platform. Soft, diffused lighting enhances the clarity of the digital elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl1rFL0BHkoEQPAMJCDcj9WgeoFMnAqQZZNP3k6eIG2CLVaS2Zc6cx6zNCUn5SLMaKhesYwtUodYW9RL9XB28hTxKLMLxyINRNhmqWQGKjH7zzRpO5anDfKrLxE-aM33ysVz6ws2vf85Ab3n5BoDTuhkXKs495bmYYiWlPLODITKwlaqpevT0AHZEzEpr6AOZCoULrKoB9dZfA081bcBH3wmmRM3AM4zGYH3HtcW85qgvBBFbiS2k8tWuB4epUqIef38xdLCq8Og"/>
+<!-- Overlay to simulate UI on top of image -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none"></div>
+</section>
+<!-- Bento Grid Features -->
+<section class="mb-[120px]">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Intelligence at every node.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The systems you need to align, track, and execute with clarity.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[320px]">
+<!-- Feature 1: AI Goal Generator (Spans 2 columns on desktop) -->
+<div class="md:col-span-2 bg-surface rounded-2xl border border-outline-variant p-8 flex flex-col relative overflow-hidden shadow-sm hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="mb-auto z-10">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]">auto_fix</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">AI Goal Generator</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Translate strategic vision into measurable OKRs instantly. Our model structures vague objectives into precise, trackable metrics.</p>
+</div>
+<!-- Mock UI Snippet -->
+<div class="mt-8 bg-surface-container-lowest rounded-lg border border-outline-variant p-4 shadow-sm z-10 w-3/4 self-end">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-tertiary text-[16px]">electric_bolt</span>
+<span class="font-label-sm text-label-sm text-on-surface">Suggested Metric:</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Increase Q3 Enterprise retention by 15%</p>
+</div>
+</div>
+<!-- Feature 2: Risk Prediction -->
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant p-8 flex flex-col relative overflow-hidden shadow-sm hover:-translate-y-1 transition-transform duration-300">
+<div class="mb-auto z-10">
+<span class="material-symbols-outlined text-error mb-4 text-[32px]">warning</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Risk Prediction</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Identify blockers before they derail your timeline.</p>
+</div>
+<!-- Mock UI Snippet -->
+<div class="mt-8 z-10 flex flex-col gap-2">
+<div class="bg-surface rounded-md p-3 border border-error/20 border-l-2 border-l-error flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-[18px]">trending_down</span>
+<div class="font-label-sm text-label-sm text-on-surface">Resource bottleneck detected in Dev-Team Alpha.</div>
+</div>
+</div>
+</div>
+<!-- Feature 3: Smart Reviews -->
+<div class="bg-surface rounded-2xl border border-outline-variant p-8 flex flex-col relative overflow-hidden shadow-sm hover:-translate-y-1 transition-transform duration-300">
+<div class="mb-auto z-10">
+<span class="material-symbols-outlined text-secondary mb-4 text-[32px]">fact_check</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Smart Reviews</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automated performance summaries.</p>
+</div>
+</div>
+<!-- Analytics Showcase (Spans 2 columns) -->
+<div class="md:col-span-2 bg-surface rounded-2xl border border-outline-variant p-8 flex flex-col md:flex-row gap-8 relative overflow-hidden shadow-sm hover:-translate-y-1 transition-transform duration-300">
+<div class="z-10 flex-1">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]">query_stats</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Deep Analytics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Visualize progress across every layer of your organization. Heatmaps and predictive trend lines replace static spreadsheets.</p>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+                            Explore Analytics <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</button>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-xl border border-outline-variant p-4 flex items-center justify-center relative">
+<!-- Abstract Chart Placeholder -->
+<div class="w-full h-full flex items-end gap-2 px-2 pb-2">
+<div class="w-1/6 bg-primary-fixed-dim rounded-t-sm" style="height: 40%"></div>
+<div class="w-1/6 bg-primary-fixed-dim rounded-t-sm" style="height: 60%"></div>
+<div class="w-1/6 bg-primary rounded-t-sm" style="height: 90%"></div>
+<div class="w-1/6 bg-secondary-container rounded-t-sm" style="height: 75%"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm" style="height: 50%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Architecture Section -->
+<section class="mb-[120px] py-[80px] bg-surface-container-lowest border-y border-outline-variant relative overflow-hidden">
+<div class="max-w-4xl mx-auto px-gutter text-center relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-16">Built for Scale. Engineered for Speed.</h2>
+<!-- Architecture Diagram Diagram -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+<!-- Frontend -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 w-full md:w-1/3 shadow-sm relative">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px] mb-2">web</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">React Frontend</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lightning-fast UI optimized for data-dense rendering.</p>
+</div>
+<!-- Arrow -->
+<span class="material-symbols-outlined text-outline text-[32px] hidden md:block">arrow_forward</span>
+<span class="material-symbols-outlined text-outline text-[32px] md:hidden rotate-90">arrow_forward</span>
+<!-- Backend -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 w-full md:w-1/3 shadow-sm relative">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px] mb-2">dns</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-1">Go Microservices</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">High-throughput architecture for real-time state sync.</p>
+</div>
+<!-- Arrow -->
+<span class="material-symbols-outlined text-outline text-[32px] hidden md:block">arrow_forward</span>
+<span class="material-symbols-outlined text-outline text-[32px] md:hidden rotate-90">arrow_forward</span>
+<!-- AI Layer -->
+<div class="bg-surface-container-low border border-primary/30 rounded-xl p-6 w-full md:w-1/3 shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-primary text-[24px] mb-2 relative z-10">psychology</span>
+<h4 class="font-headline-sm text-headline-sm text-primary font-semibold mb-1 relative z-10">GoalForge AI Layer</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant relative z-10">Proprietary LLMs fine-tuned on strategic execution models.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant py-unit_xl mt-auto">
+<div class="max-w-container_max_width mx-auto px-margin_mobile md:px-margin_desktop flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">track_changes</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">GoalForge AI</span>
+</div>
+<div class="flex gap-6 font-body-sm text-body-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">System Status</a>
+</div>
+</div>
+</footer>
+</body></html>

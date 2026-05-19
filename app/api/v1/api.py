@@ -1,0 +1,23 @@
+from fastapi import APIRouter
+from app.api.v1.endpoints import health, auth, admin, org, goals, workflow, checkins, sharing, audit, tasks, analytics, ai, notifications_ws, chat, quarters, achievements, manager, reports, completion
+
+api_router = APIRouter()
+api_router.include_router(health.router, tags=["health"])
+api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
+api_router.include_router(admin.router, prefix="/admin", tags=["admin"])
+api_router.include_router(org.router, prefix="/org", tags=["org"])
+api_router.include_router(goals.router, prefix="/goals", tags=["goals"])
+api_router.include_router(workflow.router, prefix="/workflow", tags=["workflow"])
+api_router.include_router(checkins.router, prefix="/check-ins", tags=["check-ins"])
+api_router.include_router(sharing.router, prefix="/sharing", tags=["sharing"])
+api_router.include_router(audit.router, prefix="/audit", tags=["audit"])
+api_router.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
+api_router.include_router(analytics.router, prefix="/analytics", tags=["analytics"])
+api_router.include_router(ai.router, prefix="/ai", tags=["ai"])
+api_router.include_router(notifications_ws.router, tags=["notifications"])
+api_router.include_router(chat.router, prefix="/chat", tags=["chat"])
+api_router.include_router(quarters.router, prefix="/quarters", tags=["quarters"])
+api_router.include_router(achievements.router, prefix="/achievements", tags=["achievements"])
+api_router.include_router(manager.router, prefix="/manager", tags=["manager"])
+api_router.include_router(reports.router, prefix="/reports", tags=["reports"])
+api_router.include_router(completion.router, prefix="/completion", tags=["completion"])

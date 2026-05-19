@@ -1,0 +1,35 @@
+{
+	"name": "GoalForge Local",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"enabled": true
+		},
+		{
+			"key": "user_email",
+			"value": "admin@goalforge.ai",
+			"enabled": true
+		},
+		{
+			"key": "user_password",
+			"value": "admin123",
+			"enabled": true
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "goal_id",
+			"value": "",
+			"enabled": true
+		}
+	]
+}

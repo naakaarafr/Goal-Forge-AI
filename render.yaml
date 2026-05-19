@@ -1,0 +1,7 @@
+services:
+  - type: cron
+    name: lock-quarters-daily
+    env: python
+    schedule: "0 0 * * *" # Every day at midnight UTC
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m app.tasks.lock_quarters_task"

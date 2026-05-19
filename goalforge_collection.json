@@ -1,0 +1,145 @@
+{
+	"info": {
+		"name": "GoalForge AI API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{ "key": "username", "value": "{{user_email}}", "type": "text" },
+								{ "key": "password", "value": "{{user_password}}", "type": "text" }
+							]
+						},
+						"url": "{{base_url}}/api/v1/auth/login"
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set('access_token', jsonData.access_token);",
+									"pm.environment.set('refresh_token', jsonData.refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base_url}}/api/v1/auth/refresh?refresh_token={{refresh_token}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "Goals",
+			"item": [
+				{
+					"name": "Create Goal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"body": {
+							"mode": "json",
+							"json": {
+								"title": "Increase Market Share",
+								"thrust_area": "Growth",
+								"weightage": 20,
+								"quarter": "2024-Q1",
+								"uom": "numeric"
+							}
+						},
+						"url": "{{base_url}}/api/v1/goals/"
+					}
+				},
+				{
+					"name": "List Goals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/goals/?quarter=2024-Q1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "goals"],
+							"query": [{ "key": "quarter", "value": "2024-Q1" }]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Workflow",
+			"item": [
+				{
+					"name": "Approve Goal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"Approved, great metrics.\""
+						},
+						"url": "{{base_url}}/api/v1/workflow/{{goal_id}}/approve"
+					}
+				}
+			]
+		},
+		{
+			"name": "AI",
+			"item": [
+				{
+					"name": "Analyze Goal Quality",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"body": {
+							"mode": "json",
+							"json": {
+								"title": "Do stuff",
+								"weightage": 5
+							}
+						},
+						"url": "{{base_url}}/api/v1/ai/analyze-goal"
+					}
+				}
+			]
+		},
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "Dashboard Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{access_token}}", "type": "text" }
+						],
+						"url": "{{base_url}}/api/v1/analytics/summary"
+					}
+				}
+			]
+		}
+	]
+}

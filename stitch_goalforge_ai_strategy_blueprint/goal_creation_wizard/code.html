@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Goal Creation - GoalForge AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#001453",
+                        "on-secondary-fixed-variant": "#173bab",
+                        "primary-container": "#2563eb",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#dae2fd",
+                        "on-primary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "secondary-fixed": "#dde1ff",
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#eef0ff",
+                        "background": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e7ff",
+                        "inverse-primary": "#b4c5ff",
+                        "secondary": "#3755c3",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-container": "#708cfd",
+                        "tertiary-container": "#bc4800",
+                        "surface-container-low": "#f2f3ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-dim": "#d2d9f4",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-container": "#00217a",
+                        "surface-container-highest": "#dae2fd",
+                        "on-tertiary-fixed": "#360f00",
+                        "secondary-fixed-dim": "#b8c4ff",
+                        "surface-container": "#eaedff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-tint": "#0053db",
+                        "surface": "#faf8ff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "outline": "#737686",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004ac6",
+                        "on-surface": "#131b2e",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary": "#943700"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container_max_width": "1440px",
+                        "unit_xs": "4px",
+                        "unit_xl": "32px",
+                        "topbar_height": "64px",
+                        "sidebar_width": "280px",
+                        "margin_mobile": "16px",
+                        "margin_desktop": "32px",
+                        "unit_md": "16px",
+                        "unit_lg": "24px",
+                        "unit_sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen w-full overflow-hidden flex antialiased">
+<!-- Shared Component: SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-surface dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm flex flex-col p-unit_md overflow-y-auto z-50">
+<!-- Header -->
+<div class="flex items-center gap-unit_sm mb-unit_xl px-unit_sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined font-bold">hexagon</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">GoalForge AI</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enterprise Performance</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="mb-unit_lg w-full bg-primary-container text-on-primary flex items-center justify-center gap-unit_sm py-3 rounded-lg font-label-md text-label-md transition-colors duration-200 ease-in-out scale-98 active:opacity-80 hover:bg-primary">
+<span class="material-symbols-outlined">add</span>
+            New Goal
+        </button>
+<!-- Navigation Tabs -->
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary font-semibold transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined fill">track_changes</span>
+<span class="font-label-md text-label-md">My Goals</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Updates</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Team Overviews</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-label-md text-label-md">Approvals</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span class="font-label-md text-label-md">Org Management</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-label-md text-label-md">Audit Logs</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out scale-98 active:opacity-80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto pt-unit_md border-t border-outline-variant dark:border-outline flex flex-col gap-1">
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+<a class="flex items-center gap-unit_sm px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Workspace -->
+<div class="flex-1 ml-[280px] flex flex-col h-screen relative">
+<!-- Shared Component: TopNavBar -->
+<header class="fixed top-0 right-0 h-[64px] left-[280px] bg-surface/80 dark:bg-on-background/80 backdrop-blur-md border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-gutter z-40">
+<!-- Search / Global Command -->
+<div class="flex items-center w-1/3 max-w-md relative focus-within:ring-2 focus-within:ring-primary/20 rounded-lg transition-all">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:ring-0" placeholder="Global Command (Cmd + K)" type="text"/>
+</div>
+<!-- Navigation & Actions -->
+<div class="flex items-center gap-unit_lg">
+<nav class="hidden md:flex items-center gap-unit_md">
+<a class="font-body-sm text-body-sm text-primary dark:text-primary-fixed font-bold border-b-2 border-primary py-5" href="#">Q3 FY24</a>
+</nav>
+<div class="flex items-center gap-unit_sm text-on-surface-variant dark:text-surface-variant">
+<button class="p-2 rounded-full hover:bg-surface-container hover:text-primary dark:hover:text-primary-fixed transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container hover:text-primary dark:hover:text-primary-fixed transition-all"><span class="material-symbols-outlined">chat_bubble</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container hover:text-primary dark:hover:text-primary-fixed transition-all">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A small circular avatar image showing a professional headshot of a person, used as a user profile picture in the top navigation bar of a light-themed enterprise software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5OiqYv5sPvj5loEmTK8ctwNGYyVjdpQKHj6WuR2vdSVb294DFK_002N1qkZBMqGIhDCsaH6m6WF3HICNJKjvLvw3spBIbb7hPnLd1zw5S23V560z3pdpC-uYtvFSVypRwBWRW7JTY2ZACiYJ7wpSjLYCBupJw2UxKdBDYIczfNTQ12p_8ydjv6KKvO2Gts0O-plbr-TCax3tKTs-tzqHWlhioG0Np5AONHiM8f1Ivb0bO10lz-6rtVb_NWl5KHCU303SjUKmomw"/>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 mt-[64px] p-gutter overflow-y-auto w-full max-w-container_max_width mx-auto">
+<div class="flex items-center justify-between mb-unit_lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Create New Goal</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Define objectives that drive enterprise performance.</p>
+</div>
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-1 font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">close</span> Cancel
+                </button>
+</div>
+<!-- Main Layout: Grid 12 columns -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-unit_lg items-start">
+<!-- Left Area: Wizard Content (Span 8) -->
+<div class="xl:col-span-8 flex flex-col gap-unit_lg">
+<!-- Stepper Component -->
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm p-unit_lg">
+<div class="flex items-center justify-between relative">
+<!-- Connecting Line -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-surface-container rounded-full z-0"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-1 bg-primary rounded-full z-0 transition-all duration-500"></div>
+<!-- Steps -->
+<div class="relative z-10 flex flex-col items-center gap-2 w-1/4">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Thrust Area</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 w-1/4">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md shadow-sm ring-4 ring-primary/20">
+                                    2
+                                </div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Details</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 w-1/4">
+<div class="w-8 h-8 rounded-full bg-surface-container border-2 border-outline-variant text-on-surface-variant flex items-center justify-center font-label-md">
+                                    3
+                                </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Targets</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 w-1/4">
+<div class="w-8 h-8 rounded-full bg-surface-container border-2 border-outline-variant text-on-surface-variant flex items-center justify-center font-label-md">
+                                    4
+                                </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AI Review</span>
+</div>
+</div>
+</div>
+<!-- Step 2: Details Form Canvas -->
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm p-unit_xl flex flex-col gap-unit_lg relative overflow-hidden transition-all hover:-translate-y-[2px] hover:shadow-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">edit_document</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Goal Details</h2>
+</div>
+<!-- Form Group: Title -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="goal-title">Goal Title <span class="text-error">*</span></label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-lg text-body-lg text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm" id="goal-title" placeholder="e.g., Expand Market Share in EMEA" type="text" value="Increase Enterprise Adoption in Q3"/>
+</div>
+<!-- Form Group: Description -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface flex justify-between items-center" for="goal-desc">
+                                Description
+                                <button class="text-primary font-label-sm flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span> Auto-generate
+                                </button>
+</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-sm resize-none" id="goal-desc" placeholder="Provide context, key deliverables, and strategic alignment..." rows="5">Drive the adoption of our new enterprise feature suite across top tier clients. Focus on onboarding sessions and targeted communications to ensure active usage metrics hit 40%.</textarea>
+</div>
+<!-- Form Group: Tags/Alignment (Bento-ish element) -->
+<div class="grid grid-cols-2 gap-unit_md mt-2">
+<div class="border border-outline-variant rounded-xl p-4 bg-surface-container-lowest flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Parent Goal Alignment</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">arrow_upward</span>
+                                        FY24 Revenue Growth
+                                    </span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="border border-outline-variant rounded-xl p-4 bg-surface-container-lowest flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tags</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-secondary-container/20 text-on-secondary-container rounded-md font-label-sm text-[11px] border border-secondary-container/30">Enterprise</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant rounded-md font-label-sm text-[11px] border border-outline-variant/50">Q3</span>
+<button class="w-6 h-6 rounded-md border border-dashed border-outline-variant flex items-center justify-center text-outline hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Wizard Footer Actions -->
+<div class="flex justify-between items-center mt-unit_md pt-unit_md border-t border-surface-container">
+<button class="px-6 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                                Back
+                            </button>
+<button class="px-6 py-2 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all flex items-center gap-2">
+                                Next: Targets <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Area: AI Assist Panel (Span 4) - The Wow Factor -->
+<aside class="xl:col-span-4 h-full sticky top-[88px]">
+<!-- Glassmorphic / Tinted AI Panel -->
+<div class="bg-surface-container-lowest border border-primary/20 rounded-2xl p-unit_lg flex flex-col gap-unit_md shadow-[0_4px_24px_-4px_rgba(37,99,235,0.08)] relative overflow-hidden h-full min-h-[600px]">
+<!-- Subtle background glow -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+<!-- Header -->
+<div class="flex items-center justify-between mb-2 relative z-10">
+<div class="flex items-center gap-2 text-primary-container">
+<span class="material-symbols-outlined fill">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold">AI Assist</h3>
+</div>
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-sm text-[10px] uppercase tracking-wider">Live Analysis</span>
+</div>
+<!-- Clarity Score Bento Card -->
+<div class="bg-surface rounded-xl p-4 border border-outline-variant/50 relative z-10 flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<span class="font-label-md text-label-md text-on-surface-variant">Clarity Score</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">72<span class="text-body-sm text-outline font-normal">/100</span></span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[72%]"></div>
+</div>
+<p class="font-body-sm text-[13px] leading-tight text-on-surface-variant">Good start, but lacks specific metrics. AI can help refine this into a SMART goal.</p>
+</div>
+<hr class="border-outline-variant/30 my-2 relative z-10"/>
+<!-- SMART Suggestions List -->
+<div class="flex flex-col gap-3 relative z-10 flex-1">
+<h4 class="font-label-md text-label-md text-on-surface mb-1">SMART Improvements</h4>
+<!-- Suggestion 1: Measurable (Warning state) -->
+<div class="bg-surface rounded-xl p-3 border-l-4 border-l-tertiary-container border border-outline-variant/50 shadow-sm flex gap-3 items-start">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-tertiary-container/10 text-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px]">straighten</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Make it Measurable</span>
+<p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">"Increase adoption" is vague. Suggest changing title to: <strong class="text-on-surface font-medium">Achieve 40% Active Usage in Enterprise Suite Q3</strong>.</p>
+<div class="flex gap-2 mt-1">
+<button class="text-[12px] font-label-sm text-primary hover:underline">Apply</button>
+<button class="text-[12px] font-label-sm text-outline hover:text-on-surface">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Suggestion 2: Specific (Info state) -->
+<div class="bg-surface rounded-xl p-3 border-l-4 border-l-primary border border-outline-variant/50 shadow-sm flex gap-3 items-start">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px]">my_location</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Enhance Specificity</span>
+<p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">Specify the target audience in the description. e.g., "Focusing on Tier 1 &amp; 2 accounts."</p>
+<div class="flex gap-2 mt-1">
+<button class="text-[12px] font-label-sm text-primary hover:underline">Apply</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Magic Refine Button (Floating at bottom of panel) -->
+<div class="mt-auto pt-4 relative z-10">
+<button class="w-full py-3 bg-gradient-to-r from-primary-container to-secondary-container text-on-primary rounded-xl font-label-md text-label-md shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">magic_button</span>
+                                Auto-Refine Goal
+                            </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>
