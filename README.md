@@ -78,9 +78,9 @@ flowchart TD
     E -->|manager| G[Manager Command Center]
     E -->|employee| H[Personal Workspace]
     
-    F --> I[/admin/dashboard]
-    G --> J[/manager/dashboard]
-    H --> K[/employee/dashboard]
+    F --> I["/admin/dashboard"]
+    G --> J["/manager/dashboard"]
+    H --> K["/employee/dashboard"]
 
     class C,E gate;
     class F,G,H role;
