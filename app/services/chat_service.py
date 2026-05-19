@@ -1,5 +1,5 @@
 import json
-import google.generativeai as genai
+from google import genai
 from typing import List, Dict
 from app.core.config import settings
 from app.db.redis import redis_client
@@ -7,13 +7,14 @@ from app.services.context_service import ContextService
 from app.models.user import User
 
 # Configure Gemini
-genai.configure(api_key=settings.GEMINI_API_KEY)
+_client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
 class ChatService:
     def __init__(self, db):
         self.db = db
         self.context_builder = ContextService(db)
-        self.model = genai.GenerativeModel('gemini-flash-latest')
+        self.client = _client
+        self.model = 'gemini-2.0-flash'
         self.history_ttl = 3600 # 1 hour memory
 
     async def chat(self, user: User, message: str) -> str:
@@ -47,7 +48,10 @@ class ChatService:
         # We append system prompt to the first message or use it as a preamble
         full_prompt = f"{system_prompt}\n\nRecent History: {history[-5:]}\n\nUser: {message}\nAI:"
         
-        response = self.model.generate_content(full_prompt)
+        response = self.client.models.generate_content(
+            model=self.model,
+            contents=full_prompt
+        )
         ai_message = response.text.strip()
 
         # 5. Update history
