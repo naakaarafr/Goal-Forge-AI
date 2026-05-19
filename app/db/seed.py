@@ -25,7 +25,7 @@ async def seed_data():
         await session.commit()
         
         # 2. Create Admin
-        admin_email = "admin@goalforge.ai"
+        admin_email = "dev@goalforge.ai"
         query = select(User).where(User.email == admin_email)
         res = await session.execute(query)
         admin = res.scalar_one_or_none()
