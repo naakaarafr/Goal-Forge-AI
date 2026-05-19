@@ -32,11 +32,13 @@ async def health_check(
         health_status["status"] = "degraded"
 
     # Check Redis
-    try:
-        await cache.ping()
-        health_status["redis"] = "online"
-    except Exception as e:
-        health_status["redis"] = f"error: {str(e)}"
-        health_status["status"] = "degraded"
+    if cache is None:
+        health_status["redis"] = "disabled"
+    else:
+        try:
+            await cache.ping()
+            health_status["redis"] = "online"
+        except Exception as e:
+            health_status["redis"] = f"offline (error: {str(e)})"
 
     return health_status
