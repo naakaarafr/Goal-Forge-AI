@@ -116,15 +116,6 @@ await audit.log_action(
     new_values={"status": goal.status, "reason": payload.reason}
 )
 ```
-
----
-
-## 🎨 Professional Analytics & Metrics Center
-
-![GoalForge Dashboard Mockup](goalforge_dashboard_mockup.png)
-
-*Organize, monitor, and scale team deliverables using real-time strategic alignment indexes.*
-
 ---
 
 ## 🔑 Default Enterprise Evaluation Credentials
