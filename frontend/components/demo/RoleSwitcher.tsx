@@ -16,7 +16,7 @@ interface DemoUser {
 }
 
 const DEMO_USERS: DemoUser[] = [
-  { name: 'Dev Admin', email: 'dev@goalforge.ai', role: 'admin', title: 'Director / System Admin' },
+  { name: 'Admin', email: 'admin@goalforge.ai', role: 'admin', title: 'Director / System Admin' },
   { name: 'Manager', email: 'manager@goalforge.ai', role: 'manager', title: 'Engineering Lead' },
   { name: 'Employee', email: 'employee@goalforge.ai', role: 'employee', title: 'Software Engineer' }
 ];
@@ -33,7 +33,7 @@ export function RoleSwitcher() {
     env.NEXT_PUBLIC_APP_ENV === 'development' ||
     !!user?.is_superuser || 
     user?.role?.toLowerCase() === 'admin' || 
-    user?.email === 'dev@goalforge.ai' ||
+    user?.email === 'admin@goalforge.ai' ||
     user?.email === 'manager@goalforge.ai' ||
     user?.email === 'employee@goalforge.ai';
 

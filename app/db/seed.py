@@ -32,7 +32,7 @@ async def seed_data():
         if not admin:
             admin = User(
                 email=admin_email,
-                hashed_password=get_password_hash("Password123!"),
+                hashed_password=get_password_hash("dev-password-local-only"),
                 full_name="Super Admin",
                 role=UserRole.admin,
                 is_active=True,
@@ -49,7 +49,7 @@ async def seed_data():
         if not manager:
             manager = User(
                 email=manager_email,
-                hashed_password=get_password_hash("Password123!"),
+                hashed_password=get_password_hash("dev-password-local-only"),
                 full_name="John Manager",
                 role=UserRole.manager,
                 is_active=True,
@@ -68,7 +68,7 @@ async def seed_data():
             manager_id = manager.id if manager else None
             employee = User(
                 email=employee_email,
-                hashed_password=get_password_hash("Password123!"),
+                hashed_password=get_password_hash("dev-password-local-only"),
                 full_name="Sarah Employee",
                 role=UserRole.employee,
                 is_active=True,
