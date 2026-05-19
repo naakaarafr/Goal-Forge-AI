@@ -47,7 +47,7 @@ export default function ManagerDashboardPage() {
 
   const { data: quarters, isLoading: quartersLoading } = useQuarters();
   const selectedQuarter = React.useMemo(() => {
-    if (!quarters) return null;
+    if (!quarters || !Array.isArray(quarters)) return null;
     return quarters.find(q => q.label === filters.quarter) || quarters.find(q => q.state === 'active') || quarters[0];
   }, [quarters, filters.quarter]);
 
@@ -66,7 +66,7 @@ export default function ManagerDashboardPage() {
   const pendingCount = pendingGoals?.length ?? 0;
 
   const chartData = React.useMemo(() => {
-    if (!qoqData || qoqData.length === 0) return [];
+    if (!qoqData || !Array.isArray(qoqData) || qoqData.length === 0) return [];
     return qoqData.map((item: any) => ({
       quarter: item.quarter,
       planned: 100,

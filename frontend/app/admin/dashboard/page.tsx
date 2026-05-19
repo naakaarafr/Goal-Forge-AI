@@ -39,11 +39,13 @@ export default function AdminGovernanceDashboard() {
   );
   const { data: qoqData, isLoading: qoqLoading } = useQoQTrends(true);
 
-  const activeQuarter = quarters?.find(q => q.state === 'active');
-  const openEscalations = (escalations ?? []).filter((e: any) => e.status === 'open' || e.status === 'pending');
+  const activeQuarter = (quarters && Array.isArray(quarters)) ? quarters.find(q => q.state === 'active') : undefined;
+  const openEscalations = (escalations && Array.isArray(escalations)) 
+    ? escalations.filter((e: any) => e.status === 'open' || e.status === 'pending') 
+    : [];
 
   const chartData = React.useMemo(() => {
-    if (!qoqData || qoqData.length === 0) return mockQoQ;
+    if (!qoqData || !Array.isArray(qoqData) || qoqData.length === 0) return mockQoQ;
     return qoqData.map((item: any) => ({
       quarter: item.quarter,
       planned: 100,

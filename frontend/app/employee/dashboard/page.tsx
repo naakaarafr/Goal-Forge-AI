@@ -58,7 +58,7 @@ export default function EmployeeDashboardPage() {
   
   const { data: quarters, isLoading: quartersLoading } = useQuarters();
   const selectedQuarter = React.useMemo(() => {
-    if (!quarters) return null;
+    if (!quarters || !Array.isArray(quarters)) return null;
     return quarters.find(q => q.label === filters.quarter) || quarters.find(q => q.state === 'active') || quarters[0];
   }, [quarters, filters.quarter]);
 
@@ -71,7 +71,7 @@ export default function EmployeeDashboardPage() {
   const { data: qoqData, isLoading: qoqLoading } = useQoQTrends(true); // personal trends
   
   const chartData = React.useMemo(() => {
-    if (!qoqData || qoqData.length === 0) {
+    if (!qoqData || !Array.isArray(qoqData) || qoqData.length === 0) {
       return [];
     }
     return qoqData.map((item: any) => ({
