@@ -1,7 +1,45 @@
 services:
+  # 1. FastAPI Backend API
+  - type: web
+    name: goalforge-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt && python init_db.py"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+        placeholder: "Enter Google Gemini API Key here"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+
+  # 2. Next.js Frontend
+  - type: web
+    name: goalforge-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: NEXT_PUBLIC_APP_ENV
+        value: "production"
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false
+        placeholder: "Enter Frontend App URL (e.g. https://goalforge-frontend.onrender.com)"
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+        placeholder: "Enter Backend API URL (e.g. https://goalforge-backend.onrender.com/api/v1)"
+      - key: NEXT_PUBLIC_WS_URL
+        sync: false
+        placeholder: "Enter Backend WebSocket URL (e.g. wss://goalforge-backend.onrender.com/ws)"
+      - key: NEXT_PUBLIC_ENABLE_MOCK_AUTH
+        value: "false"
+
+  # 3. Daily Cron Task for Quarter Locking
   - type: cron
     name: lock-quarters-daily
     env: python
-    schedule: "0 0 * * *" # Every day at midnight UTC
+    schedule: "0 0 * * *"
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python -m app.tasks.lock_quarters_task"
