@@ -46,12 +46,18 @@ export default function LandingPage() {
             Move beyond static OKRs. GoalForge AI actively monitors, predicts risks, and generates actionable insights to ensure your enterprise hits its targets with absolute precision.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <button className="w-full md:w-auto bg-primary text-on-primary font-medium px-6 py-3 rounded-lg shadow-sm hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+            <Link 
+              href="/signup" 
+              className="w-full md:w-auto bg-primary text-on-primary font-medium px-6 py-3 rounded-lg shadow-sm hover:bg-primary-container transition-colors flex items-center justify-center gap-2 text-center"
+            >
               Start Free Trial <ArrowRight className="w-4 h-4" />
-            </button>
-            <button className="w-full md:w-auto bg-surface text-primary font-medium px-6 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors">
+            </Link>
+            <Link 
+              href="/login" 
+              className="w-full md:w-auto bg-surface text-primary font-medium px-6 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors text-center"
+            >
               View Demo
-            </button>
+            </Link>
           </div>
         </section>
 
