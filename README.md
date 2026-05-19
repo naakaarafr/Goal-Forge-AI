@@ -1,13 +1,3 @@
----
-title: GoalForge AI Backend
-emoji: 🎯
-colorFrom: indigo
-colorTo: purple
-sdk: docker
-app_port: 8000
-pinned: false
----
-
 # 🎯 GoalForge AI — Enterprise Performance Orchestration
 
 ![GoalForge AI Banner](goalforge_banner.png)
